@@ -821,10 +821,14 @@ func (modules goModules) GetByPath(p string) *goModule {
 	return nil
 }
 
-func (modules goModules) GetMain() *goModule {
+func (modules goModules) GetMain(workingDir ...string) *goModule {
 	for _, m := range modules {
 		if m.Main {
-			return m
+			if len(workingDir) == 0 {
+				return m
+			} else if workingDir[0] == m.Dir {
+				return m
+			}
 		}
 	}
 

@@ -518,7 +518,7 @@ func (c *collector) collect() {
 		return
 	}
 
-	projectMod := createProjectModule(c.gomods.GetMain(), c.ccfg.WorkingDir, c.moduleConfig)
+	projectMod := createProjectModule(c.gomods.GetMain(c.ccfg.WorkingDir), c.ccfg.WorkingDir, c.moduleConfig)
 
 	if err := c.addAndRecurse(projectMod); err != nil {
 		c.err = err
